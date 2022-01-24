@@ -1,0 +1,27 @@
+{% extends 'base.html' %} 
+{% block include %} 
+{% include 'includes/include.html'%}
+{% endblock include %}
+{% block title %}
+<title>Django blog</title>
+{% endblock title %}
+{% block content %} 
+{% for post in posts %}
+    <article class="post">
+        <time class="date"> {{ post.published_date }} </time>
+        
+        Category: <a href="{% url 'blog:category_detail' post.category.id %}">{{post.category}}</a>
+        <h2>
+            <a href="{% url 'blog:post_detail' slug=post.slug %}">
+                <img src="{{post.thumbnail_image.url}}" alt="thumb_image" width="50" height="50" style="border-radius: 50%"/>
+            </a>
+            <a href="{% url 'blog:post_detail' slug=post.slug %}">{{ post.title }}</a>
+        </h2>
+        
+        <p>{{ post.text|linebreaksbr }}</p>
+        Tag:{% for tag in post.tag.all %}
+            <a href="{% url 'blog:tag_detail' slug=tag.id %}">{{tag.name}},</a>
+        {% endfor %}
+    </article>
+{% endfor %} 
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Category</title>
+{% endblock title %}
+{% block content %}
+<button>
+    <a href="{% url 'blog:add_category' %}">Add Category</a>
+</button>
+<br>
+<hr>
+<h1>Categories:</h1>
+{% for category in categories %}
+    <a href="{% url 'blog:category_detail' category.id %}"><p>{{category}}</p></a>
+{% endfor %} {% endblock content %}

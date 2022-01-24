@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% comment %} {% block include %}
+ {% include 'includes/include.html' %} 
+{% endblock include %} {% endcomment %}
+{% block title %}
+<title>Post</title>
+{% endblock title %}
+{% block content %}
+<h2>New Post</h2>
+<form action="" method="POST" enctype="multipart/form-data" class="post-form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="save btn btn-secondary">Save</button>
+</form>
+{% endblock content %}

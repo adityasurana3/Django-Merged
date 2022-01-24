@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Profile</title>
+{% endblock title %}
+{% block content %}
+
+{% comment %} <form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Update</button> </form> {% endcomment %}
+{% comment %}
+    <p>Username: {{request.user.username}}</p>
+   <p>First Name: {{request.user.first_name}}</p>
+   <p>Last Name:  {{request.user.last_name}}</p>
+   <p>Phone Number: {{request.user.phone_no}}</p>
+   <p>Email:  {{request.user.email_id}}</p>
+   <p>City:  {{request.user.city}}</p>
+   <p>State:  {{request.user.state}}</p>
+   <p>Country: {{request.user.country}}</p>
+  
+   Image:<img src="{{request.user.image.url}}" alt="Image">
+   <br> {% endcomment %}
+   <div class="container bootstrap snippets bootdey">
+    <div class="panel-body inf-content">
+        <div class="row">
+            <div class="col-md-4">
+                <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="{{request.user.image.url}}" data-original-title="Usuario"> 
+                <ul title="Ratings" class="list-inline ratings text-center">
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <strong>Information</strong><br>
+                <div class="table-responsive">
+                <table class="table table-user-information">
+                    <tbody>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                    Username                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{request.user.username}}     
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-user  text-primary"></span>    
+                                    Name                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{request.user.first_name}}     
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-cloud text-primary"></span>  
+                                    Lastname                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{request.user.last_name}}  
+                            </td>
+                        </tr>
+    
+    
+    
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-eye-open text-primary"></span> 
+                                    Phone Number                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{request.user.phone_no}}
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                    Email                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{request.user.email_id}}
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                    City                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{request.user.city}}
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                    State                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{request.user.state}}
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <strong>
+                                    <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                    Country                                                
+                                </strong>
+                            </td>
+                            <td class="text-primary">
+                                {{request.user.country}}
+                            </td>
+                        </tr>                        
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>                                        
+<button>
+    <a href = "{% url 'blog:profile_detail' %}">Update Profile</a>
+</button>
+
+{% endblock content %}

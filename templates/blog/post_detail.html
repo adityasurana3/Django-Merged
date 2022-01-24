@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% block include %} {% include 'includes/include.html'%}
+{% endblock include %} {% block content %}
+{% if user.is_authenticated %}
+    <a class="btn btn-secondary" href="{% url 'blog:post_edit' pk=post.pk %}">
+        {% include './icons/pencil-fill.svg' %}
+    </a>
+{% endif %}
+<article class="post">
+  <aside class="actions"></aside>
+  {% if post.published_date %}
+      <time class="date"> {{ post.published_date }} </time>
+  {% endif %}
+  <h2>
+      <img src="{{post.thumbnail_image.url}}" alt="thumnial_image" width="50" height="50" style="border-radius: 50%"/>
+          {{ post.title }}
+  </h2>
+  <img src="{{post.featured_image.url}}" alt="featured_image" width="100%" height="400"/>
+  <p>{{ post.text|linebreaksbr }}</p>
+</article>
+
+{% comment %}
+<p>{{comments.name}}:</p>
+<p>{{comments.comment}}</p>
+{% endcomment %}
+
+<h2>Leave a Comment</h2>
+<form method="POST" enctype="multitype/form-data" class="post-form">
+  {% csrf_token %} {{form.as_p}}
+  <div class="text-center">
+    <button type="submit" class="save btn btn-secondary text-center">
+      Submit
+    </button>
+  </div>
+</form>
+
+{% for comment in comments %} {% if comment %}
+
+<p>{{comment.name}}:</p>
+<p>{{comment.comment|linebreaks}}</p>
+{% for reply in comment.replies.all %}
+<div class="bg-info ms-5 p-3 border-1 rounded mb-3">
+  <p>{{reply.name}}</p>
+  <p>{{reply.comment}}</p>
+</div>
+{% endfor %}
+<h5 class="ms-5 p-3">Reply</h5>
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="ms-5 p-3">
+    {{form.as_p}}
+    <input type="hidden" name="reply_id" value="{{comment.id}}" />
+    <input class="btn btn-primary" type="submit" value="Reply" />
+  </div>
+</form>
+{% else %}
+<h4>There are no comments</h4>
+{% endif %} {% endfor %} {% endblock %}
