@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'polls',
     # 'django_extensions',
     # 'django-extensions'   
+    'rest_framework'
     
 ]
 AUTH_USER_MODEL = 'blog.MyUser'

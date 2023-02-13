@@ -24,6 +24,7 @@ class PostAdmin(admin.ModelAdmin):
 
 class MyUserAdmin(admin.ModelAdmin):
     actions = ['export_as_csv']
+    list_filter = ['is_superuser','is_active']
     def export_as_csv(self, request, queryset):
         meta = self.model._meta
         field_names = [field.name for field in meta.fields]

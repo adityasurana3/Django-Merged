@@ -18,13 +18,21 @@ from django.urls import path,include
 from blog import views
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+from blog.apiurls import router as blog_router
+router = routers.DefaultRouter()
+router.registry.extend(blog_router.registry)
+# router.registry.extend(blog_router.registry)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('blog.urls')),
+    path('api/',include('blog.apiurls')),
     path('polls/',include('polls.urls')),
-    path('login',views.login,name='login'),
-    path('signup',views.signup,name='signup'),
-    path('logout',views.log_out,name='logout'),
+    path('login/',views.login,name='login'),
+    path('signup/',views.signup,name='signup'),
+    path('logout/',views.log_out,name='logout'),
+    path('api/', include(router.urls)),
+    # path('api/auth/', include())
 
 ]
 if settings.DEBUG:
